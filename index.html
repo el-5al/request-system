@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Request System</h1>
+  </header>
+
+  <main>
+    <!-- New Request Form -->
+    <section class="card" id="new-request-section">
+      <h2>New Request</h2>
+      <form id="request-form" novalidate>
+        <div class="form-group">
+          <label for="title">Title <span class="required">*</span></label>
+          <input type="text" id="title" placeholder="Short description of the request" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="category">Category <span class="required">*</span></label>
+            <select id="category" required>
+              <option value="">-- Select --</option>
+              <option value="IT">IT</option>
+              <option value="HR">HR</option>
+              <option value="Finance">Finance</option>
+              <option value="Facilities">Facilities</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="priority">Priority <span class="required">*</span></label>
+            <select id="priority" required>
+              <option value="">-- Select --</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Critical">Critical</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" rows="4" placeholder="Provide any additional details…"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Request</button>
+      </form>
+    </section>
+
+    <!-- Requests Table -->
+    <section class="card" id="requests-section">
+      <div class="section-header">
+        <h2>Requests</h2>
+        <div class="filters">
+          <select id="filter-status">
+            <option value="">All Statuses</option>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+          </select>
+          <select id="filter-category">
+            <option value="">All Categories</option>
+            <option value="IT">IT</option>
+            <option value="HR">HR</option>
+            <option value="Finance">Finance</option>
+            <option value="Facilities">Facilities</option>
+            <option value="Other">Other</option>
+          </select>
+          <button class="btn btn-secondary" id="clear-filters">Clear Filters</button>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table id="requests-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Submitted</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="requests-body">
+            <!-- Populated by app.js -->
+          </tbody>
+        </table>
+        <p id="empty-message" class="empty-message hidden">No requests match the current filters.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
