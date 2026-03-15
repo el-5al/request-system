@@ -14,3 +14,26 @@ async def home(request: Request):
 @app.get("/dashboard", response_class=HTMLResponse)
 async def dashboard(request: Request):
     return templates.TemplateResponse("dashboard.html", {"request": request})
+
+from pydantic import BaseModel
+
+requests_db=[]
+
+class RequestData(BaseModel):
+    username:str
+    email:str
+    body:str
+
+@app.post("/create_request")
+def create_request(req:RequestData):
+
+    requests_db.append({
+        "username":req.username,
+        "body":req.body
+    })
+
+    return {"status":"saved"}
+
+@app.get("/requests")
+def get_requests():
+    return {"requests":requests_db}
