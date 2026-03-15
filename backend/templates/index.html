@@ -7,10 +7,27 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+    <nav class="navbar">
+        <span class="navbar-brand">📋 Request System</span>
+        <div class="navbar-links">
+            <a href="/" class="active">Home</a>
+            <a href="/requests">All Requests</a>
+            <a href="/submit">New Request</a>
+        </div>
+    </nav>
     <div class="container">
-        <h1>Request System</h1>
-        <p class="status">Status: Running ✓</p>
-        <a href="/submit" class="btn">Submit a Request</a>
+        <h1>Welcome to the Request System</h1>
+        <p class="subtitle">Manage and track all your requests in one place.</p>
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-number">{{ total }}</div>
+                <div class="stat-label">Total Requests</div>
+            </div>
+        </div>
+        <div class="action-row">
+            <a href="/submit" class="btn btn-primary">+ New Request</a>
+            <a href="/requests" class="btn btn-secondary">View All Requests</a>
+        </div>
     </div>
 </body>
 </html>
