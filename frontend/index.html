@@ -1,0 +1,46 @@
+<html>
+
+<head>
+<title>Request System</title>
+</head>
+
+<body>
+
+<h2>Create Request</h2>
+
+<input id="username" placeholder="Username">
+<br><br>
+
+<textarea id="body" placeholder="Describe your request"></textarea>
+<br><br>
+
+<button onclick="sendRequest()">Send Request</button>
+
+<script>
+
+function sendRequest(){
+
+fetch("/create_request",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+username:document.getElementById("username").value,
+email:"test@test.com",
+body:document.getElementById("body").value
+})
+})
+
+.then(res=>res.json())
+.then(data=>{
+alert("Request submitted")
+})
+
+}
+
+</script>
+
+</body>
+
+</html>
