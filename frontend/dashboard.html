@@ -1,0 +1,40 @@
+<html>
+
+<head>
+<title>Requests Dashboard</title>
+</head>
+
+<body>
+
+<h2>Request Dashboard</h2>
+
+<button onclick="loadRequests()">Refresh</button>
+
+<ul id="requests"></ul>
+
+<script>
+
+function loadRequests(){
+
+fetch("/requests")
+.then(res=>res.json())
+.then(data=>{
+
+let list=document.getElementById("requests")
+list.innerHTML=""
+
+data.requests.forEach(r=>{
+let li=document.createElement("li")
+li.innerText=r.body
+list.appendChild(li)
+})
+
+})
+
+}
+
+</script>
+
+</body>
+
+</html>
