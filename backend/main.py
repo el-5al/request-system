@@ -1,21 +1,16 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 
-class Request(BaseModel):
-    username: str
-    email: str
-    body: str
+templates = Jinja2Templates(directory="frontend")
 
-@app.get("/")
-def home():
-    return {"status": "request system running"}
+@app.get("/", response_class=HTMLResponse)
+async def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
-@app.post("/create_request")
-def create_request(req: Request):
-    return {
-        "message": "request received",
-        "user": req.username,
-        "body": req.body
-    }
+@app.get("/dashboard", response_class=HTMLResponse)
+async def dashboard(request: Request):
+    return templates.TemplateResponse("dashboard.html", {"request": request})
