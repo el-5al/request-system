@@ -1,7 +1,5 @@
 fastapi
 uvicorn
-psycopg2-binary
-fastapi
-uvicorn
 jinja2
+python-multipart
 psycopg2-binary
